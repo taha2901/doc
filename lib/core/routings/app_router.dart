@@ -1,3 +1,4 @@
+import 'package:doctor/features/on_boarding/login/ui/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,13 +13,10 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const OnBoardingScreen(),
         );
-      // case Routers.login:
-      //   return MaterialPageRoute(
-      //     builder: (_) => BlocProvider(
-      //       create: (context) => getit<LoginCubit>(),
-      //       child: const LoginScreen(),
-      //     ),
-      //   );
+      case Routers.login:
+        return MaterialPageRoute(
+          builder: (_) => const LoginScreen(),
+        );
       // case Routers.home:
       //   return MaterialPageRoute(
       //     builder: (_) => const HomeScreen(),
