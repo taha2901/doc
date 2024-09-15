@@ -1,7 +1,9 @@
+import 'package:doctor/core/helpers/extentions.dart';
+import 'package:doctor/core/routings/routers.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theming/styles.dart';
+import '../../../../core/theming/styles.dart';
 
 
 class DontHaveAccountText extends StatelessWidget {
@@ -22,7 +24,7 @@ class DontHaveAccountText extends StatelessWidget {
             style: TextStyles.font13BlueSemiBold,
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                // context.pushReplacementNamed(Routers.signUp);
+                context.pushReplacementNamed(Routers.signup);
               },
           ),
         ],

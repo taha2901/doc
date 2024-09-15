@@ -1,9 +1,10 @@
+import 'package:doctor/core/widgets/password_validations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/helpers/app_regex.dart';
-import '../../../../../core/helpers/spacing.dart';
-import '../../../../../core/widgets/app_text_form_field.dart';
+import '../../../../core/helpers/app_regex.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/widgets/app_text_form_field.dart';
+import '../../logic/login_cubit.dart';
 import 'password_validation.dart';
 
 class EmailAndPassword extends StatefulWidget {
@@ -24,6 +25,13 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
   bool hasSpecialChar = false;
   bool hasLength = false;
 
+  @override
+  void initState() {
+    super.initState();
+    passwordController = context.read<LoginCubit>().passwordController;
+    setUpPasswordControllerListener();
+  }
+
 
 
   void setUpPasswordControllerListener() {
@@ -41,10 +49,12 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: context.read<LoginCubit>().formKey,
         child: Column(
           children: [
             AppTextFormField(
               hintText: 'Email',
+              controller: context.read<LoginCubit>().emailController,
               validator: (value) {
                 if (value == null ||
                     value.isEmpty ||
@@ -63,6 +73,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
                 return null;
               },
               hintText: 'Password',
+              controller: context.read<LoginCubit>().passwordController,
               isObscureText: isObscureText,
               suffixIcon: IconButton(
                 onPressed: () {
@@ -76,15 +87,20 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
             ),
             verticalSpace(24),
             PasswordValidation(
+              hasSpecialCharacter: hasSpecialChar,
               hasLowerCase: hasLowerCase,
               hasUpperCase: hasUpperCase,
               hasNumber: hasNumber,
-              hasSpecialCharacter: hasSpecialChar,
               hasMinLength: hasLength,
             ),
           ],
         ));
   }
 
+  @override
+  void dispose() {
+    passwordController.dispose();
+    super.dispose();
+  }
 
 }
