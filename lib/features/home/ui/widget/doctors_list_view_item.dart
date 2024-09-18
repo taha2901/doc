@@ -10,7 +10,7 @@ class DoctorsListViewItem extends StatelessWidget {
     super.key,
     required this.doctorsModel,
   });
-  final Doctors doctorsModel;
+  final Doctors? doctorsModel;
 
   @override
   Widget build(BuildContext context) {
@@ -33,19 +33,19 @@ class DoctorsListViewItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  doctorsModel.name ?? 'Name',
+                  doctorsModel?.name ?? 'Name',
                   style: TextStyles.font18DarkBlueBold,
                   overflow: TextOverflow.ellipsis,
                 ),
                 verticalSpace(5),
                 Text(
                   // 'Degree | 0111111111111',
-                  '${doctorsModel.degree} | ${doctorsModel.phone}',
+                  '${doctorsModel?.degree} | ${doctorsModel?.phone}',
                   style: TextStyles.font12GrayMedium,
                 ),
                 verticalSpace(5),
                 Text(
-                  doctorsModel.email ?? 'Email@email.com',
+                  doctorsModel?.email ?? 'Email@email.com',
                   style: TextStyles.font12GrayMedium,
                 ),
               ],
