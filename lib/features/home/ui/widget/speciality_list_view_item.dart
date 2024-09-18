@@ -7,14 +7,15 @@ import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
 import '../../data/model/home_response_model.dart';
 
-class DoctorSpecialityListViewItem extends StatelessWidget {
-  const DoctorSpecialityListViewItem({
+class SpecialityListViewItem extends StatelessWidget {
+  const SpecialityListViewItem({
     super.key,
     required this.itemIndex,
     required this.specializationDataList,
+    required this.selectedIndex,
   });
   final SpecializationsData specializationDataList;
-
+  final int selectedIndex;
   final int itemIndex;
 
   @override
@@ -23,7 +24,22 @@ class DoctorSpecialityListViewItem extends StatelessWidget {
       padding: EdgeInsetsDirectional.only(start: itemIndex == 0 ? 0 : 24.w),
       child: Column(
         children: [
-          CircleAvatar(
+        itemIndex == selectedIndex ? Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: ColorsManager.darkBlue,
+                      ),
+                      shape: BoxShape.circle),
+                  child: CircleAvatar(
+                    radius: 28,
+                    backgroundColor: ColorsManager.lightBlue,
+                    child: SvgPicture.asset(
+                      'assets/svgs/general_speciality.svg',
+                      height: 42.h,
+                      width: 42.w,
+                    ),
+                  ),
+                ) :  CircleAvatar(
             radius: 28,
             backgroundColor: ColorsManager.lightBlue,
             child: SvgPicture.asset(

@@ -31,6 +31,9 @@ dependencies:
   flutter_screenutil: ^5.9.3
   build_runner: ^2.4.12
   cupertino_icons: ^1.0.8
+  flutter_secure_storage: ^4.2.1
+  skeletonizer: ^1.4.2
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:
